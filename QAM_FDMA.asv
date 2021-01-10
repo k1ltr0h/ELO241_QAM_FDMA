@@ -2,14 +2,7 @@
 
 clear all;
 
-disp("############################################################")
-disp("##                   Bienvenidos                          ##")
-disp("##            Proyecto ELO241 - QAM FDMA                  ##")
-disp("############################################################")
-disp(" ")
-
 while 1
-
     M = input('En qué tipo de QAM desea modular?(Deben ser potencias de 2): ');
     %M = 256;
     k = log2(M);
@@ -20,15 +13,13 @@ while 1
 
     n_sim = input('¿Cuantos datos(bytes) desea enviar?(Generados aleatoriamente)[1-inf]: ');
     if n_sim <= 0
-        fprintf("\nEl valor no puede ser cero ni negativo.\n")
+        fprintf("\nEl valor no puede ser cero ni negativo.")
         continue
     end
-
+    %n_sim = 1000;
     break
 
 end
-
-
  
 data = randi([0 1],n_sim*k,1); % [range], (matrix) N,M % Binarios
 
