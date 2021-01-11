@@ -9,35 +9,41 @@ disp("############################################################")
 disp(" ")
 
 while 1
+    try
+        M = input('En qué tipo de QAM desea modular?(Deben ser potencias de 2)[4-inf]: ');
 
-    M = input('En qué tipo de QAM desea modular?(Deben ser potencias de 2): ');
-    
-    k = log2(M);
-    if mod(k,1) ~= 0 && M < 4
-        fprintf("\n Ingrese un valor válido entre 8 y 256 que sea potencia de 2.\n")
+        k = log2(M);
+        
+        if M < 4 || mod(k,1) ~= 0
+            fprintf("\n Ingrese un valor válido entre 4(QPSK) y 256 que sea potencia de 2.\n")
+            continue
+        end
+
+        n_sim = input('¿Cuantos datos(bytes) desea enviar?(Generados aleatoriamente)[1-inf]: ');
+
+        if n_sim <= 0
+            fprintf("\nEl valor no puede ser cero ni negativo.\n")
+            continue
+        end
+
+        n_user = input('¿Cuantos usuarios estan conectados?[1-inf]: ');
+
+        if n_user <= 0
+            fprintf("\nEl valor no puede ser cero ni negativo.\n")
+            continue
+        end
+
+        snr = input('Indique la SNR con la cual transmitir[0-inf]: ');
+
+        if snr <= 0
+            fprintf("\nEl valor no puede ser negativo.\n")
+            continue
+        end
+
+        break
+    catch
         continue
     end
-
-    n_sim = input('¿Cuantos datos(bytes) desea enviar?(Generados aleatoriamente)[1-inf]: ');
-    if n_sim <= 0
-        fprintf("\nEl valor no puede ser cero ni negativo.\n")
-        continue
-    end
-    
-    n_user = input('¿Cuantos usuarios estan conectados?[1-254]: ');
-    if n_user <= 0 && n_user >254
-        fprintf("\nEl valor no puede ser cero, negativo ni mayor a 254.\n")
-        continue
-    end
-    
-    snr = input('Indique la SNR con la cual transmitir[0-inf]: ');
-    if n_user <= 0
-        fprintf("\nEl valor no puede ser cero, negativo ni mayor a 254.\n")
-        continue
-    end
-
-    break
-
 end
 
 data = randi([0 1],n_sim*k,n_user); % [range], (matrix) N,M % Binarios
