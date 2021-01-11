@@ -7,6 +7,9 @@ Proyecto programado en Matlab.
 ## Avances 
 
 - Simulación de Tx QAM
+- Modulación y demodulación QAM (Genérico)
+- FDMA
+- Menú para insertar valores a interés
 
 ## Integrantes
 
